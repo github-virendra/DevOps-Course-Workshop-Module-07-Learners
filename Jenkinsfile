@@ -9,6 +9,7 @@ pipeline {
         stage(' DotNet Build') {
             agent {
                 docker { image 'mcr.microsoft.com/dotnet/sdk:5.0' }
+                reuseNode true
             }
             steps {
                 sh 'dotnet build'
@@ -18,6 +19,7 @@ pipeline {
         stage('NPM Build') {
             agent {
                 docker { image 'node:14-alpine' }
+                reuseNode true
             }
             steps {
                 sh 'npm install'
